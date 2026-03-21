@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportLife — Официальный магазин</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-600: #555;
+      --accent: #e63329;
+      --accent-dark: #b82820;
+      --nav-height: 64px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      background: var(--black);
+      color: var(--white);
+      font-size: 12px;
+      text-align: center;
+      padding: 8px 16px;
+      letter-spacing: 0.05em;
+    }
+    .topbar a { color: var(--accent); text-decoration: none; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      height: var(--nav-height);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 4px; flex: 1; }
+    nav a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, color 0.15s;
+    }
+    nav a:hover, nav a.active { background: var(--gray-100); color: var(--black); }
+
+    .header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .btn-icon {
+      width: 40px; height: 40px;
+      border: none; background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: background 0.15s;
+      position: relative;
+      color: var(--black);
+    }
+    .btn-icon:hover { background: var(--gray-100); }
+    .btn-icon svg { width: 20px; height: 20px; }
+    .cart-badge {
+      position: absolute;
+      top: 4px; right: 4px;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ─── BRAND NAV ─── */
+    .brand-nav {
+      background: var(--black);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .brand-nav::-webkit-scrollbar { display: none; }
+    .brand-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+    }
+    .brand-nav a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .brand-nav a:hover, .brand-nav a.active {
+      color: var(--white);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ─── HERO SLIDER ─── */
+    .hero {
+      position: relative;
+      background: var(--black);
+      overflow: hidden;
+      height: 520px;
+    }
+    .hero-slides { display: flex; height: 100%; transition: transform 0.5s ease; }
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 0 80px;
+    }
+    .slide-1 { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 60%, #16213e 100%); }
+    .slide-2 { background: linear-gradient(135deg, #1a0a0a 0%, #2e1a0a 60%, #3e2516 100%); }
+    .slide-3 { background: linear-gradient(135deg, #0a1a0a 0%, #0a2e1a 60%, #163e25 100%); }
+
+    .hero-content { max-width: 500px; z-index: 2; }
+    .hero-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      line-height: 0.9;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+    .hero-image {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 380px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-image-placeholder {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .hero-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.2s, width 0.2s;
+      border: none;
+    }
+    .hero-dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+
+    .hero-prev, .hero-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+      z-index: 10;
+    }
+    .hero-prev:hover, .hero-next:hover { background: rgba(255,255,255,0.2); }
+    .hero-prev { left: 24px; }
+    .hero-next { right: 24px; }
+
+    /* ─── SECTION ─── */
+    .section { max-width: 1280px; margin: 0 auto; padding: 60px 24px; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.04em;
+    }
+    .section-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section-link:hover { text-decoration: underline; }
+
+    /* ─── CATALOG LAYOUT ─── */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* ─── FILTERS ─── */
+    .filters { position: sticky; top: calc(var(--nav-height) + 16px); align-self: start; }
+    .filter-group { margin-bottom: 28px; }
+    .filter-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+    .filter-options { display: flex; flex-direction: column; gap: 8px; }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color 0.15s;
+    }
+    .filter-option:hover { color: var(--black); }
+    .filter-option input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .filter-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+    .price-range { display: flex; gap: 8px; align-items: center; }
+    .price-input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .price-input:focus { border-color: var(--accent); }
+    .filter-divider { height: 1px; background: var(--gray-200); margin: 4px 0 20px; }
+
+    /* ─── CATALOG HEADER ─── */
+    .catalog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .catalog-count { font-size: 14px; color: var(--gray-600); }
+    .sort-select {
+      padding: 8px 12px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--black);
+      outline: none;
+      cursor: pointer;
+      background: white;
+    }
+    .view-toggle { display: flex; gap: 4px; }
+    .view-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400);
+      transition: all 0.15s;
+    }
+    .view-btn.active { border-color: var(--black); color: var(--black); background: var(--black); color: white; }
+
+    /* ─── PRODUCT GRID ─── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      background: white;
+      position: relative;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 1;
+    }
+    .badge-new { background: var(--black); color: white; }
+    .badge-sale { background: var(--accent); color: white; }
+    .badge-hit { background: #f59e0b; color: white; }
+
+    .product-image {
+      background: var(--gray-100);
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-wishlist {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 32px; height: 32px;
+      background: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: opacity 0.15s;
+      color: var(--gray-400);
+    }
+    .product-card:hover .product-wishlist { opacity: 1; }
+    .product-wishlist:hover { color: var(--accent); }
+    .product-wishlist svg { width: 16px; height: 16px; }
+
+    .product-info { padding: 16px; }
+    .product-brand {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .product-desc {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 18px; font-weight: 800; color: var(--black); }
+    .product-price-old {
+      font-size: 13px;
+      color: var(--gray-400);
+      text-decoration: line-through;
+      margin-left: 6px;
+      font-weight: 500;
+    }
+    .btn-cart {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-cart:hover { background: var(--accent-dark); }
+    .btn-cart svg { width: 14px; height: 14px; }
+
+    /* ─── BRANDS SECTION ─── */
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .brand-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 20px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+    }
+    .brand-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(230,51,41,0.1); }
+    .brand-icon { font-size: 28px; margin-bottom: 8px; }
+    .brand-name { font-size: 13px; font-weight: 700; color: var(--black); }
+    .brand-count { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+
+    /* ─── FEATURES ─── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 24px;
+      background: var(--gray-100);
+      border-radius: 12px;
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .feature-title { font-size: 15px; font-weight: 700; }
+    .feature-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+    /* ─── CART DRAWER ─── */
+    .cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -420px;
+      width: 420px; height: 100vh;
+      background: white;
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s ease;
+      box-shadow: -4px 0 32px rgba(0,0,0,0.15);
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-drawer-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-drawer-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.04em; }
+    .btn-close {
+      width: 36px; height: 36px;
+      border: none; background: var(--gray-100);
+      border-radius: 8px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--black);
+    }
+    .btn-close:hover { background: var(--gray-200); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
+    .cart-item {
+      display: flex; gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .cart-item-img {
+      width: 72px; height: 72px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-brand { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+    .cart-item-name { font-size: 13px; font-weight: 600; margin: 4px 0; }
+    .cart-item-price { font-size: 16px; font-weight: 800; }
+    .cart-item-qty {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 8px;
+    }
+    .qty-btn {
+      width: 24px; height: 24px;
+      border: 1px solid var(--gray-200);
+      background: white; border-radius: 4px;
+      cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qty-btn:hover { background: var(--gray-100); }
+    .qty-num { font-size: 13px; font-weight: 600; min-width: 20px; text-align: center; }
+    .cart-footer { padding: 24px; border-top: 1px solid var(--gray-200); }
+    .cart-total {
+      display: flex; justify-content: space-between;
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cart-total-price { font-size: 22px; font-weight: 800; }
+    .btn-checkout {
+      width: 100%;
+      background: var(--black);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-checkout:hover { background: var(--accent); }
+    .cart-empty {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--gray-400);
+    }
+    .cart-empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .cart-empty p { font-size: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 24px 24px;
+    }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: white; margin-bottom: 12px; }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
+    .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: white; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: var(--black);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 300;
+      display: flex; align-items: center; gap: 8px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 900px) {
+      .catalog-layout { grid-template-columns: 1fr; }
+      .filters { position: static; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-title { font-size: 52px; }
+      .hero-image { display: none; }
+      .brands-grid { grid-template-columns: repeat(3, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🚚 Бесплатная доставка от 5 000 ₽ · Официальный дилер Garmin, Polar, Suunto · <a href="#">Поддержка 24/7</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">SPORT<span>LIFE</span></a>
+    <nav>
+      <a href="#" class="active">Каталог</a>
+      <a href="#">Новинки</a>
+      <a href="#">Распродажа</a>
+      <a href="#">Блог</a>
+      <a href="#">О магазине</a>
+      <a href="#">Доставка</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-icon" title="Поиск">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="btn-icon" title="Избранное">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="btn-icon" id="cartBtn" title="Корзина">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- BRAND NAV -->
+<div class="brand-nav">
+  <div class="brand-nav-inner">
+    <a href="#" class="active">Все бренды</a>
+    <a href="#">GARMIN</a>
+    <a href="#">POLAR</a>
+    <a href="#">SUUNTO</a>
+    <a href="#">COROS</a>
+    <a href="#">TACX</a>
+    <a href="#">DJI</a>
+  </div>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide slide-1">
+      <div class="hero-content">
+        <div class="hero-brand">Garmin · Новинка 2025</div>
+        <div class="hero-title">FORERUNNER 970</div>
+        <div class="hero-desc">Флагманские GPS-часы для бега и триатлона. Продвинутый мониторинг тренировок и точная навигация.</div>
+        <a href="#catalog" class="btn-primary">
+          Смотреть в каталоге
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-image"><div class="hero-image-placeholder">⌚</div></div>
+    </div>
+    <div class="hero-slide slide-2">
+      <div class="hero-content">
+        <div class="hero-brand">Polar · Топ продаж</div>
+        <div class="hero-title">VANTAGE V3</div>
+        <div class="hero-desc">Мультиспортивные часы для настоящих любителей спорта. Точный пульс, GPS, барометр.</div>
+        <a href="#catalog" class="btn-primary">
+          Смотреть в каталоге
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-image"><div class="hero-image-placeholder">🏃</div></div>
+    </div>
+    <div class="hero-slide slide-3">
+      <div class="hero-content">
+        <div class="hero-brand">Suunto · Хит</div>
+        <div class="hero-title">VERTICAL TITANIUM</div>
+        <div class="hero-desc">Надёжные и функциональные GPS-часы для горного спорта и трейлраннинга.</div>
+        <a href="#catalog" class="btn-primary">
+          Смотреть в каталоге
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-image"><div class="hero-image-placeholder">🏔️</div></div>
+    </div>
+  </div>
+  <button class="hero-prev" id="heroPrev">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-next" id="heroNext">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
+
+<!-- BRANDS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">Наши бренды</div>
+  </div>
+  <div class="brands-grid">
+    <a href="#" class="brand-card"><div class="brand-icon">⌚</div><div class="brand-name">GARMIN</div><div class="brand-count">142 товара</div></a>
+    <a href="#" class="brand-card"><div class="brand-icon">❤️</div><div class="brand-name">POLAR</div><div class="brand-count">87 товаров</div></a>
+    <a href="#" class="brand-card"><div class="brand-icon">🏔️</div><div class="brand-name">SUUNTO</div><div class="brand-count">64 товара</div></a>
+    <a href="#" class="brand-card"><div class="brand-icon">🏃</div><div class="brand-name">COROS</div><div class="brand-count">38 товаров</div></a>
+    <a href="#" class="brand-card"><div class="brand-icon">🚴</div><div class="brand-name">TACX</div><div class="brand-count">29 товаров</div></a>
+    <a href="#" class="brand-card"><div class="brand-icon">📷</div><div class="brand-name">DJI</div><div class="brand-count">21 товар</div></a>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<div id="catalog" class="catalog-layout">
+  <!-- FILTERS -->
+  <aside class="filters">
+    <div class="filter-group">
+      <div class="filter-title">Бренд</div>
+      <div class="filter-options">
+        <label class="filter-option"><input type="checkbox" checked /> Garmin <span class="filter-count">142</span></label>
+        <label class="filter-option"><input type="checkbox" /> Polar <span class="filter-count">87</span></label>
+        <label class="filter-option"><input type="checkbox" /> Suunto <span class="filter-count">64</span></label>
+        <label class="filter-option"><input type="checkbox" /> Coros <span class="filter-count">38</span></label>
+        <label class="filter-option"><input type="checkbox" /> Tacx <span class="filter-count">29</span></label>
+        <label class="filter-option"><input type="checkbox" /> DJI <span class="filter-count">21</span></label>
+      </div>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <div class="filter-title">Категория</div>
+      <div class="filter-options">
+        <label class="filter-option"><input type="checkbox" checked /> Часы <span class="filter-count">210</span></label>
+        <label class="filter-option"><input type="checkbox" /> Велокомпьютеры <span class="filter-count">45</span></label>
+        <label class="filter-option"><input type="checkbox" /> Пульсометры <span class="filter-count">38</span></label>
+        <label class="filter-option"><input type="checkbox" /> Навигаторы <span class="filter-count">27</span></label>
+        <label class="filter-option"><input type="checkbox" /> Ремешки <span class="filter-count">95</span></label>
+        <label class="filter-option"><input type="checkbox" /> Зарядки <span class="filter-count">42</span></label>
+      </div>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <div class="filter-title">Цена, ₽</div>
+      <div class="price-range">
+        <input class="price-input" type="number" placeholder="от" value="0" />
+        <span style="color:var(--gray-400)">—</span>
+        <input class="price-input" type="number" placeholder="до" value="150000" />
+      </div>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <div class="filter-title">Наличие</div>
+      <div class="filter-options">
+        <label class="filter-option"><input type="checkbox" checked /> В наличии <span class="filter-count">381</span></label>
+        <label class="filter-option"><input type="checkbox" /> Под заказ <span class="filter-count">48</span></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <div>
+    <div class="catalog-header">
+      <div class="catalog-count">Найдено <strong>381 товар</strong></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <select class="sort-select">
+          <option>По популярности</option>
+          <option>Сначала дешевле</option>
+          <option>Сначала дороже</option>
+          <option>Новинки</option>
+          <option>По рейтингу</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-btn active" title="Сетка">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" title="Список">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section" style="background:var(--gray-100);max-width:100%;padding:60px 24px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="section-header"><div class="section-title">Почему выбирают нас</div></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="feature-title">Быстрая доставка</div>
+        <div class="feature-desc">Доставка по всей России от 1 дня. Бесплатно при заказе от 5 000 ₽.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="feature-title">Официальная гарантия</div>
+        <div class="feature-desc">Мы официальный дилер всех брендов. Гарантия от производителя.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+        </div>
+        <div class="feature-title">Удобная оплата</div>
+        <div class="feature-desc">Карта, СБП, рассрочка. Безопасные платёжные системы.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <div class="feature-title">Поддержка 24/7</div>
+        <div class="feature-desc">Наши эксперты помогут выбрать товар и ответят на любые вопросы.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">SPORT<span>LIFE</span></div>
+        <div class="footer-desc">Официальный дилер Garmin, Polar, Suunto, Coros и Tacx в России. Только оригинальные товары с гарантией производителя.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Каталог</div>
+        <div class="footer-links">
+          <a href="#">Часы</a>
+          <a href="#">Велокомпьютеры</a>
+          <a href="#">Пульсометры</a>
+          <a href="#">Навигаторы</a>
+          <a href="#">Ремешки</a>
+          <a href="#">Аксессуары</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Информация</div>
+        <div class="footer-links">
+          <a href="#">О магазине</a>
+          <a href="#">Доставка и оплата</a>
+          <a href="#">Гарантия</a>
+          <a href="#">Блог</a>
+          <a href="#">Видео</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Контакты</div>
+        <div class="footer-links">
+          <a href="#">+7 (800) 000-00-00</a>
+          <a href="#">info@sportlife.ru</a>
+          <a href="#">Москва, ул. Примерная, 1</a>
+          <a href="#">Пн–Вс: 9:00–21:00</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SportLife. Все права защищены.</span>
+      <span>Политика конфиденциальности · Оферта</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">Корзина</div>
+    <button class="btn-close" id="cartClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Итого:</span>
+      <span class="cart-total-price" id="cartTotal">0 ₽</span>
+    </div>
+    <button class="btn-checkout">Оформить заказ</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Товар добавлен в корзину</div>
+
+<script>
+// ─── DATA ───
+const products = [
+  { id:1, brand:'Garmin', name:'Fenix 8 Pro Solar', desc:'Мультиспортивные GPS-часы для приключений', price:89990, badge:'hit', emoji:'⌚' },
+  { id:2, brand:'Garmin', name:'Forerunner 970', desc:'Флагманские часы для бега и триатлона', price:74990, oldPrice:84990, badge:'new', emoji:'🏃' },
+  { id:3, brand:'Polar', name:'Vantage V3', desc:'Многофункциональные мультиспортивные часы', price:52990, badge:'hit', emoji:'❤️' },
+  { id:4, brand:'Suunto', name:'Vertical Titanium Solar', desc:'GPS-часы для горного спорта', price:64990, badge:'new', emoji:'🏔️' },
+  { id:5, brand:'Garmin', name:'Edge 1050', desc:'Велокомпьютер с сенсорным экраном', price:39990, oldPrice:49990, badge:'sale', emoji:'🚴' },
+  { id:6, brand:'Coros', name:'Vertix 2S', desc:'Ультрапрочные часы для экстремального спорта', price:44990, badge:'new', emoji:'⛰️' },
+  { id:7, brand:'Garmin', name:'HRM-Pro Plus', desc:'Нагрудный датчик пульса с памятью', price:12990, badge:null, emoji:'💓' },
+  { id:8, brand:'Polar', name:'Verity Sense', desc:'Оптический датчик пульса на руку', price:7990, oldPrice:9990, badge:'sale', emoji:'📡' },
+  { id:9, brand:'Tacx', name:'Neo 3M Smart', desc:'Умный велостанок прямого привода', price:139990, badge:'hit', emoji:'🏋️' },
+];
+
+let cart = {};
+
+// ─── RENDER PRODUCTS ───
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card">
+      ${p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge==='new'?'Новинка':p.badge==='sale'?'Скидка':'Хит'}</span>` : ''}
+      <div class="product-image">
+        ${p.emoji}
+        <button class="product-wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">${p.price.toLocaleString('ru')} ₽</span>
+            ${p.oldPrice ? `<span class="product-price-old">${p.oldPrice.toLocaleString('ru')} ₽</span>` : ''}
+          </div>
+          <button class="btn-cart" onclick="addToCart(${p.id})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            В корзину
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── CART ───
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateCartUI();
+  showToast();
+}
+
+function updateCartUI() {
+  const total = Object.values(cart).reduce((a,b) => a+b, 0);
+  document.getElementById('cartCount').textContent = total;
+
+  const items = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+
+  if (total === 0) {
+    items.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Корзина пуста</p></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+
+  let totalPrice = 0;
+  items.innerHTML = Object.entries(cart).map(([id, qty]) => {
+    const p = products.find(x => x.id == id);
+    totalPrice += p.price * qty;
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img">${p.emoji}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-brand">${p.brand}</div>
+          <div class="cart-item-name">${p.name}</div>
+          <div class="cart-item-price">${(p.price * qty).toLocaleString('ru')} ₽</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty(${id},-1)">−</button>
+            <span class="qty-num">${qty}</span>
+            <button class="qty-btn" onclick="changeQty(${id},1)">+</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('cartTotal').textContent = totalPrice.toLocaleString('ru') + ' ₽';
+  footer.style.display = 'block';
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  updateCartUI();
+}
+
+// ─── CART DRAWER ───
+const cartBtn = document.getElementById('cartBtn');
+const cartDrawer = document.getElementById('cartDrawer');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartClose = document.getElementById('cartClose');
+
+function openCart() { cartDrawer.classList.add('open'); cartOverlay.classList.add('open'); }
+function closeCart() { cartDrawer.classList.remove('open'); cartOverlay.classList.remove('open'); }
+
+cartBtn.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+// ─── TOAST ───
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── HERO SLIDER ───
+let slide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('heroDots');
+
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'hero-dot' + (i===0?' active':'');
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goTo(n) {
+  slide = (n + slides.length) % slides.length;
+  document.getElementById('heroSlides').style.transform = `translateX(-${slide*100}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===slide));
+}
+
+document.getElementById('heroNext').addEventListener('click', () => goTo(slide+1));
+document.getElementById('heroPrev').addEventListener('click', () => goTo(slide-1));
+setInterval(() => goTo(slide+1), 5000);
+
+// ─── INIT ───
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
